@@ -1,6 +1,6 @@
 /example_script.py
-/recommender/arxiv_data/
-/recommender/arxiv_sample/
+#/recommender/arxiv_data/
+#/recommender/arxiv_sample/
 #/__pycache__
 
 
