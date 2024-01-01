@@ -25,15 +25,15 @@ def recommend_similiar_paper(input_title=None, input_abstract=None, n=10, title_
     top_papers: DataFrame
         The papers recommended from the model.
     """
-    if (input_title == None) and (input_abstract == None):
-        print('No inputs')
-        return None
-    elif(input_title != None):
+    if ((input_title == None) or (input_title == '')) and ((input_abstract == None) or (input_abstract == '')):
+        raise ValueError('At least one input is required.')
+    
+    elif(input_title != None) and ((input_abstract == None) or (input_abstract == '')):
         title_scores = linear_kernel(tfidf_title_vectorizer.transform([input_title]),
                                      tfidf_title_matrix)
         total_scores = title_scores[0]
     
-    elif(input_abstract != None):
+    elif ((input_title == None) or (input_title == '')) and (input_abstract != None):
         abstract_scores = linear_kernel(tfidf_abstract_vectorizer.transform([input_abstract]),
                                        tfidf_abstract_matrix)
         total_scores = abstract_scores[0]
